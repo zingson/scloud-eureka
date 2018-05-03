@@ -1,5 +1,5 @@
-group 'com.umq.cloud'
-version '1.0.2'
+group 'io.ms.scloud'
+version '1.0.1'
 
 apply plugin: 'java'
 
@@ -12,7 +12,7 @@ compileJava*.options*.compilerArgs=[/*"-Xlint:unchecked",*/ "-g:vars", "-g:lines
 buildscript {
     ext {
         springBootVersion = '2.0.0.RELEASE'
-        springCloudVersion = 'Finchley.M9'
+        springCloudVersion = 'Finchley.RC1'
     }
     repositories {
         jcenter()
@@ -41,9 +41,7 @@ dependencyManagement {
 dependencies {
     compile 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
     compile 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-    compile 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
-
-    compile 'org.springframework.boot:spring-boot-starter-actuator'
+    //compile 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
 
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
