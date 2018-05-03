@@ -8,9 +8,9 @@ eureka:
     service-url:
       defaultZone: http://node01.dev.io:8761/eureka/,http://node02.dev.io:8761/eureka/
     # 注册当前实例
-    fetch-registry: true
+    fetch-registry: false
     # 发现其他实例
-    register-with-eureka: true
+    register-with-eureka: false
   server:
     # 关闭自己保存副本，测试时保证服务及时更新
     enable-self-preservation: false

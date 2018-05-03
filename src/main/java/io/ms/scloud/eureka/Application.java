@@ -1,4 +1,4 @@
-package com.umq.cloud.eureka;
+package io.ms.scloud.eureka;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
