@@ -1,7 +1,16 @@
+plugins {
+    id 'org.springframework.boot' version '2.0.0.RELEASE'
+}
+apply plugin: 'java'
+apply plugin: 'io.spring.dependency-management'
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Finchley.RC1'
+    }
+}
+
 group 'io.ms.scloud'
 version '1.0.1'
-
-apply plugin: 'java'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -9,33 +18,10 @@ targetCompatibility = 1.8
 [compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
 compileJava*.options*.compilerArgs=[/*"-Xlint:unchecked",*/ "-g:vars", "-g:lines", "-g:source"]
 
-buildscript {
-    ext {
-        springBootVersion = '2.0.0.RELEASE'
-        springCloudVersion = 'Finchley.RC1'
-    }
-    repositories {
-        jcenter()
-        maven {url 'https://repo.spring.io/libs-milestone'}
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    }
-}
-
 repositories {
     mavenCentral()
     jcenter()
     maven { url 'https://repo.spring.io/libs-milestone'}
-}
-
-apply plugin: 'org.springframework.boot'
-apply plugin: "io.spring.dependency-management"
-
-dependencyManagement {
-    imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-    }
 }
 
 dependencies {
@@ -44,8 +30,4 @@ dependencies {
     //compile 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
 
     testCompile 'org.springframework.boot:spring-boot-starter-test'
-}
-
-bootJar {
-    baseName = 'cloud-eureka'
 }

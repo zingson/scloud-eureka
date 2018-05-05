@@ -2,7 +2,7 @@
 
 # 项目介绍
 
-Eureka
+Spring cloud Eureka 
 
 
 # 软件架构
