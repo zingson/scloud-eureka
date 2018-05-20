@@ -6,14 +6,14 @@ spring:
 eureka:
   instance:
     prefer-ip-address: true
-    hostname: ${hostname:localhost}
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
   client:
     service-url:
       defaultZone: http://192.168.200.110:39111/eureka/,http://192.168.200.111:39111/eureka/
     # 注册当前实例
-    fetch-registry: false
+    fetch-registry: true
     # 发现其他实例
-    register-with-eureka: false
+    register-with-eureka: true
     eureka-service-url-poll-interval-seconds: 60
   server:
     # 保护机制，测试时关闭保证服务及时更新
