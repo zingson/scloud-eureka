@@ -16,7 +16,7 @@ DOCKER_CMD="docker service create --name $NAME \
 --label name=$NAME \
 --label version=$VERSION \
 --network cluster \
--p 39001:39001 \
+-p 39111:39111 \
 --replicas 1 \
 -d openjdk:8-jre-alpine sh -c \
 'wget $MV_URL/io/ms/scloud/$NAME/$VERSION/$FULL_NAME &&java -jar $FULL_NAME --spring.profiles.active=dev'"
