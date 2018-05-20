@@ -3,18 +3,28 @@ server:
 spring:
   application:
     name: scloud-eureka
+  cloud:
+    inetutils:
+      preferred-networks: 10.18.
 eureka:
   instance:
     prefer-ip-address: true
-    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    lease-expiration-duration-in-seconds: 30     # 默认90秒没收到请求，剔除服务
+    lease-renewal-interval-in-seconds: 10         #心跳间隔默认30
   client:
     service-url:
       defaultZone: http://192.168.200.110:39111/eureka/,http://192.168.200.111:39111/eureka/
-    # 注册当前实例
-    fetch-registry: true
-    # 发现其他实例
-    register-with-eureka: true
+      #defaultZone: http://127.0.0.1:8761/eureka/
+    fetch-registry: false                           # 注册当前实例
+    register-with-eureka: false                    # 发现其他实例
     eureka-service-url-poll-interval-seconds: 60
   server:
-    # 保护机制，测试时关闭保证服务及时更新
-    enable-self-preservation: false
+    enable-self-preservation: false               # 保护机制，测试时关闭保证服务及时更新
+    eviction-interval-timer-in-ms: 30000          # 清理服务间隔时间毫秒，默认0
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
