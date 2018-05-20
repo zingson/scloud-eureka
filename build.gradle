@@ -1,5 +1,6 @@
+import java.text.SimpleDateFormat
 plugins {
-    id 'org.springframework.boot' version '2.0.0.RELEASE'
+    id 'org.springframework.boot' version '2.0.1.RELEASE'
 }
 apply plugin: 'java'
 apply plugin: 'io.spring.dependency-management'
@@ -8,9 +9,13 @@ dependencyManagement {
         mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Finchley.RC1'
     }
 }
-
+def buildTime(){
+    def df = new SimpleDateFormat("yyMMddHHmmss")
+    df.setTimeZone(TimeZone.getTimeZone("UTC+08:00"))
+    return df.format(new Date())
+}
 group 'io.ms.scloud'
-version '1.0.1'
+version '1.0.1-'+buildTime()
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -24,10 +29,46 @@ repositories {
     maven { url 'https://repo.spring.io/libs-milestone'}
 }
 
+configurations {
+    compile.exclude module: 'spring-boot-starter-log4j2'
+    //all*.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+}
+
 dependencies {
     compile 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
-    compile 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+    //compile 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
     //compile 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
 
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
+
+
+
+/** PublishToNexus $gradle publishMavenPublicationToMavenRepository */
+apply plugin: 'maven-publish'
+def mavenReleasesUrl = "http://10.18.222.20:8081/repository/maven-releases/"
+publishing (){
+    publications {
+        maven(MavenPublication) {
+            groupId project.group
+            artifactId project.name
+            version project.version
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url = mavenReleasesUrl
+            credentials {
+                username 'admin'
+                password 'uladmin'
+            }
+        }
+    }
+}
+task dockerDeployTask(type:Exec,description:'Build Project'){
+    workingDir './'
+    commandLine 'sh','./deploy.sh',getArchivesBaseName(),getVersion(),mavenReleasesUrl
+}
+
+

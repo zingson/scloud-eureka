@@ -1,16 +1,4 @@
-server:
-  port: 38761
 spring:
-  application:
-    name: scloud-eureka
-eureka:
-  client:
-    service-url:
-      defaultZone: http://211.152.57.28:38761/eureka/
-    # 注册当前实例
-    fetch-registry: false
-    # 发现其他实例
-    register-with-eureka: false
-  server:
-    # 关闭自己保存副本，测试时保证服务及时更新
-    enable-self-preservation: false
+  profiles:
+    active: dev
+
