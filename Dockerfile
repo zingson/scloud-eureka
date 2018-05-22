@@ -5,7 +5,7 @@ ENV NAME=eureka
 ENV TAG=2.0.0.RC1
 
 WORKDIR /
-COPY eureka.jar /
+COPY eureka.jar ./
 EXPOSE 8761
 
 CMD ["java","-jar","eureka.jar"]
