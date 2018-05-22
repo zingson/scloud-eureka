@@ -21,7 +21,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 [compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
-compileJava*.options*.compilerArgs=[/*"-Xlint:unchecked",*/ "-g:vars", "-g:lines", "-g:source"]
+compileJava*.options*.compilerArgs=["-Xlint:unchecked","-g:vars", "-g:lines", "-g:source"]
 
 repositories {
     mavenCentral()
@@ -29,15 +29,8 @@ repositories {
     maven { url 'https://repo.spring.io/libs-milestone'}
 }
 
-configurations {
-    compile.exclude module: 'spring-boot-starter-log4j2'
-    //all*.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
-}
-
 dependencies {
     compile 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
-    //compile 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-    //compile 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
 
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
