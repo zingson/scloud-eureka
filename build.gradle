@@ -9,7 +9,7 @@ dependencyManagement {
     }
 }
 group 'io.ms.scloud'
-version '1.0.2'
+version '2.0.0.RC1'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
