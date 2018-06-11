@@ -29,6 +29,6 @@ dependencies {
 
 bootJar {
     manifest {
-        attributes 'Main-Clas': 'io.ms.scloud.eureka.Application'
+        attributes 'Main-Clas': 'io.ms.scloud.Application'
     }
 }
