@@ -1,4 +1,4 @@
-from: spring-netflix-eureka-server-2.0.0.RC1
+from: spring-netflix-eureka-server-1.9.2
 server:
   port: 8761
 spring:

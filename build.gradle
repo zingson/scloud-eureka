@@ -1,15 +1,15 @@
 plugins {
-    id 'org.springframework.boot' version '2.0.1.RELEASE'
+    id 'org.springframework.boot' version '2.0.2.RELEASE'
 }
 apply plugin: 'java'
 apply plugin: 'io.spring.dependency-management'
 dependencyManagement {
     imports {
-        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Finchley.RC1'
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Finchley.RELEASE'
     }
 }
 group 'io.ms.scloud'
-version '2.0.0.RC1'
+version '2.0.2'  //版本同spring boot版本号，对应eureka版本为1.9.2
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -25,10 +25,4 @@ repositories {
 
 dependencies {
     compile 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
-}
-
-bootJar {
-    manifest {
-        attributes 'Main-Clas': 'io.ms.scloud.Application'
-    }
 }
